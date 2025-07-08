@@ -1,21 +1,39 @@
 #region
 
 using System.Collections.Generic;
+using Alchemy.Inspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 #endregion
 
+/// <summary>
+/// This component is responsible for launching shooting a shroom.
+/// It also handles resetting shrooms and resetting missed throws 
+/// </summary>
 public class ShroomLauncher : MonoBehaviour
 {
-    [SerializeField] private float pixelToBoostFactor = 0.1f;
-    [SerializeField] private LineRenderer predictionLineRenderer;
-    [SerializeField] [Min(0)] private float predictionTime = 5;
-    [SerializeField] private int predictionDownsample = 10;
-    [SerializeField] private float maxVelocity = 20;
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private Transform shroomSpawnPoint;
-    [SerializeField] private List<GameObject> shroomPrefabs;
+    [BoxGroup("Throwing Settings")] [SerializeField]
+    private float pixelToVelocityFactor = 0.1f;
+
+    [BoxGroup("Throwing Settings")] [SerializeField]
+    private float maxVelocity = 35;
+
+    [BoxGroup("Spawn Settings")] [SerializeField]
+    private Transform shroomSpawnPoint;
+
+    [BoxGroup("Spawn Settings")] [SerializeField]
+    private GameObject shroomPrefab;
+
+    [BoxGroup("Prediction Settings")] [SerializeField]
+    private LineRenderer predictionLineRenderer;
+
+    [BoxGroup("Prediction Settings")] [SerializeField] [Min(0)]
+    private float predictionTime = 5;
+
+    [BoxGroup("Prediction Settings")] [SerializeField]
+    private int predictionDownsample = 10;
+
 
     private GameObject currentShroom;
     private bool isAiming;
@@ -30,7 +48,7 @@ public class ShroomLauncher : MonoBehaviour
     {
         get
         {
-            var velocity = delta * pixelToBoostFactor;
+            var velocity = delta * pixelToVelocityFactor;
             return velocity.normalized * Mathf.Min(velocity.magnitude, maxVelocity);
         }
     }
@@ -109,9 +127,7 @@ public class ShroomLauncher : MonoBehaviour
 
     public void NextShroom()
     {
-        var randomIndex = Random.Range(0, shroomPrefabs.Count);
-        var prefab = shroomPrefabs[randomIndex];
-        var newShroomObj = Instantiate(prefab, shroomSpawnPoint.position, Quaternion.identity);
+        var newShroomObj = Instantiate(shroomPrefab, shroomSpawnPoint.position, Quaternion.identity);
         currentShroom = newShroomObj;
         var shroomRigid = currentShroom.GetComponent<Rigidbody>();
         shroomRigid.isKinematic = true;

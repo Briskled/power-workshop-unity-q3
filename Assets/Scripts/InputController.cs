@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 #endregion
 
+/// <summary>
+/// This script handles the connection between user input and the game by notifying the <see cref="gameManager"/> about button presses
+/// </summary>
 public class InputController : MonoBehaviour
 {
     private InputActions inputActions;
