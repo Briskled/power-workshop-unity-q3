@@ -1,6 +1,8 @@
 #region
 
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 #endregion
 
@@ -10,9 +12,21 @@ using UnityEngine;
 [RequireComponent(typeof(Crushable))]
 public class Customer : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> customerLookPrefabs;
+
     private Crushable crushable;
 
     public Crushable Crushable => crushable ??= GetComponent<Crushable>();
+
+    private void Start()
+    {
+        var randomIndex = Random.Range(0, customerLookPrefabs.Count);
+        var randomPrefab = customerLookPrefabs[randomIndex];
+        var newLook = Instantiate(randomPrefab, transform);
+        newLook.transform.localPosition = Vector3.zero;
+        newLook.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        newLook.transform.localScale = Vector3.one * 4;
+    }
 
     private void OnEnable()
     {
