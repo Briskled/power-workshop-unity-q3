@@ -3804,6 +3804,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Customer
       objectReference: {fileID: 0}
+    - target: {fileID: 3079491101108643878, guid: 2451272670bc147d585b71b1c49e63db, type: 3}
+      propertyPath: crushableThresholdRange.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079491101108643878, guid: 2451272670bc147d585b71b1c49e63db, type: 3}
+      propertyPath: crushableThresholdRange.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5790354758815124315, guid: 2451272670bc147d585b71b1c49e63db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.158964

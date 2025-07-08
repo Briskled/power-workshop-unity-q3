@@ -1,6 +1,7 @@
 #region
 
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,12 +15,20 @@ public class Customer : MonoBehaviour
 {
     [SerializeField] private List<GameObject> customerLookPrefabs;
 
+    [MinMaxRangeSlider(0, 20)] [SerializeField]
+    private Vector2 crushableThresholdRange;
+
     private Crushable crushable;
 
     public Crushable Crushable => crushable ??= GetComponent<Crushable>();
 
     private void Start()
     {
+        Destroy(transform.GetChild(0).gameObject);
+
+        var crushThreshold = Random.Range(crushableThresholdRange.x, crushableThresholdRange.y);
+        Crushable.ImpactThreshold = crushThreshold;
+
         var randomIndex = Random.Range(0, customerLookPrefabs.Count);
         var randomPrefab = customerLookPrefabs[randomIndex];
         var newLook = Instantiate(randomPrefab, transform);
