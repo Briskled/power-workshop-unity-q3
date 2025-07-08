@@ -7,7 +7,7 @@ using UnityEngine;
 public delegate void OnCrushedDelegate(float impactForce);
 
 /// <summary>
-/// This script listens for collisions and calls <see cref="OnCrushed"/> when a given <see cref="impactThreshold"/> is reached.
+/// This script listens for collisions and calls <see cref="OnCrushed"/> when a given <see cref="ImpactThreshold"/> is reached.
 /// The impact force is calculated using <see cref="ImpactForceHelper"/>
 /// </summary>
 [RequireComponent(typeof(Collider))]
@@ -17,6 +17,12 @@ public class Crushable : MonoBehaviour
 
     public OnCrushedDelegate OnCrushed;
 
+    public float ImpactThreshold
+    {
+        get => impactThreshold;
+        set => impactThreshold = value;
+    }
+
     /// <summary>
     /// This is a unity event function that is automatically called for each collision with this object
     /// </summary>
@@ -24,6 +30,6 @@ public class Crushable : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         var impactForce = ImpactForceHelper.Evaluate(collision);
-        if (impactForce >= impactThreshold) OnCrushed?.Invoke(impactForce);
+        if (impactForce >= ImpactThreshold) OnCrushed?.Invoke(impactForce);
     }
 }
