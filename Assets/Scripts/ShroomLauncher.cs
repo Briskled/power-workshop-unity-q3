@@ -22,6 +22,7 @@ public class ShroomLauncher : MonoBehaviour
     [BoxGroup("Spawn Settings")] [SerializeField]
     private Transform shroomSpawnPoint;
 
+    // TODO hier müssen mehrere Prefabs möglich gemacht werden
     [BoxGroup("Spawn Settings")] [SerializeField]
     private GameObject shroomPrefab;
 
@@ -127,6 +128,10 @@ public class ShroomLauncher : MonoBehaviour
 
     public void NextShroom()
     {
+        // TODO
+        // Hier wird ein neuer Shroom an der richtigen Stelle erstellt.
+        // Anstatt aber immer nur en gleichen Shroom zu nehmen wären doch noch mehr shrooms cool.
+
         var newShroomObj = Instantiate(shroomPrefab, shroomSpawnPoint.position, Quaternion.identity);
         currentShroom = newShroomObj;
         var shroomRigid = currentShroom.GetComponent<Rigidbody>();
