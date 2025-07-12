@@ -2,6 +2,8 @@
 
 using System.Collections.Generic;
 using Alchemy.Inspector;
+using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +36,32 @@ public class ShroomLauncher : MonoBehaviour
     [BoxGroup("Prediction Settings")] [SerializeField]
     private int predictionDownsample = 10;
 
+    [BoxGroup("Prediction Settings")] [SerializeField]
+    private Gradient predictionLineGradient;
+
+    [BoxGroup("Prediction Settings")] [SerializeField]
+    private AnimationCurve predictionLineThickness = AnimationCurve.Constant(0, 1, 1);
+
+    [BoxGroup("Camera Effect Settings")] [SerializeField]
+    private CinemachineCamera virtualCamera;
+
+    [BoxGroup("Camera Effect Settings")] [SerializeField] [MinMaxRangeSlider(50, 80)]
+    private Vector2 fieldOfViewRange = new(60, 69);
+
+    [BoxGroup("Camera Effect Settings")] [SerializeField]
+    private AnimationCurve fieldOfViewLerpCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+    [BoxGroup("Camera Effect Settings")] [SerializeField]
+    private float fieldOfViewEndLerpDuration = 0.7f;
+
+    [BoxGroup("Camera Effect Settings")] [SerializeField]
+    private Ease fieldOfViewEndLerpEase = Ease.OutBack;
+
+    [BoxGroup("Particle Effect Settings")] [SerializeField]
+    private ParticleSystem particleSystem;
+
+    [BoxGroup("Particle Effect Settings")] [SerializeField] [MinMaxRangeSlider(0, 50)]
+    private Vector2 emissionRange = new(0, 35);
 
     private GameObject currentShroom;
     private bool isAiming;
@@ -53,6 +81,11 @@ public class ShroomLauncher : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        ResetAimEffects();
+    }
+
     private void Update()
     {
         var mouse = Mouse.current;
@@ -69,12 +102,14 @@ public class ShroomLauncher : MonoBehaviour
         {
             isAiming = false;
             ReleaseShroom();
+            ResetAimEffects();
         }
 
         if (isAiming)
         {
             delta = mouseStartPosition - currentMousePosition;
             UpdateAiming();
+            UpdateAimEffects();
         }
     }
 
@@ -98,6 +133,39 @@ public class ShroomLauncher : MonoBehaviour
         ShroomRigidbody.isKinematic = false;
         ShroomRigidbody.linearVelocity = LaunchVelocity;
         predictionLineRenderer.gameObject.SetActive(false);
+    }
+
+    private void UpdateAimEffects()
+    {
+        var velocityPercentage = LaunchVelocity.magnitude / maxVelocity;
+
+        var color = predictionLineGradient.Evaluate(velocityPercentage);
+        var thickness = predictionLineThickness.Evaluate(velocityPercentage);
+
+        predictionLineRenderer.startWidth = thickness;
+        predictionLineRenderer.endWidth = thickness;
+        predictionLineRenderer.material.color = color;
+
+        virtualCamera.Lens.FieldOfView = Mathf.Lerp(
+            fieldOfViewRange.x,
+            fieldOfViewRange.y,
+            fieldOfViewLerpCurve.Evaluate(velocityPercentage)
+        );
+
+        var emission = particleSystem.emission;
+        emission.rateOverTime = Mathf.Lerp(emissionRange.x, emissionRange.y, velocityPercentage);
+    }
+
+    private void ResetAimEffects()
+    {
+        DOTween.To(
+                () => virtualCamera.Lens.FieldOfView,
+                x => virtualCamera.Lens.FieldOfView = x,
+                fieldOfViewRange.x, fieldOfViewEndLerpDuration)
+            .SetEase(fieldOfViewEndLerpEase);
+
+        var emission = particleSystem.emission;
+        emission.rateOverTime = emissionRange.x;
     }
 
     private List<Vector3> CalculatePredictionPoints()
