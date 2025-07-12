@@ -2038,7 +2038,6 @@ GameObject:
   - component: {fileID: 1130635147}
   - component: {fileID: 1130635144}
   - component: {fileID: 1130635143}
-  - component: {fileID: 1130635149}
   - component: {fileID: 1130635151}
   - component: {fileID: 1130635150}
   m_Layer: 0
@@ -2060,7 +2059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f85eeb9fac4feeb6dc8c8a3c279145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPrefab: {fileID: 9157105887711914197, guid: 399f560196ff445fd9163a28eda163cb, type: 3}
 --- !u!135 &1130635144
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2098,19 +2096,6 @@ Transform:
   - {fileID: 779478099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1130635149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130635142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26437a4f5a664424badce396f768bc7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactThreshold: 10
 --- !u!23 &1130635150
 MeshRenderer:
   m_ObjectHideFlags: 0
