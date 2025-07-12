@@ -99,6 +99,9 @@ public class ShroomLauncher : MonoBehaviour
 
     private void Update()
     {
+        if (!currentShroom)
+            return;
+
         var mouse = Mouse.current;
         var currentMousePosition = mouse.position.ReadValue();
 
@@ -144,6 +147,7 @@ public class ShroomLauncher : MonoBehaviour
         ShroomRigidbody.isKinematic = false;
         ShroomRigidbody.linearVelocity = LaunchVelocity;
         predictionLineRenderer.gameObject.SetActive(false);
+        currentShroom = null;
     }
 
     private void UpdateAimEffects()
