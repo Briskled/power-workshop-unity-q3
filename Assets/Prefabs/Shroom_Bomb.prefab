@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5675273245442805327}
   - component: {fileID: -1754926995168149733}
   - component: {fileID: 5873234089636287181}
+  - component: {fileID: 4600675462741405837}
   m_Layer: 0
   m_Name: Shroom_Bomb
   m_TagString: Untagged
@@ -323,3 +324,15 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4600675462741405837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308374489857528182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e20338d442f40338f9d2a69db2b465e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
