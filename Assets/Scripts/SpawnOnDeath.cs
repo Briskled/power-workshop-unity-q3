@@ -1,7 +1,9 @@
-using System;
+#region
+
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
+
+#endregion
 
 [RequireComponent(typeof(Crushable))]
 public class SpawnOnDeath : MonoBehaviour
@@ -9,14 +11,14 @@ public class SpawnOnDeath : MonoBehaviour
     [SerializeField] private List<GameObject> prefabsToSpawn;
 
     private Crushable crushable;
-    
+
     public Crushable Crushable => crushable ??= GetComponent<Crushable>();
-    
+
     private void OnEnable()
     {
         Crushable.OnCrushed += OnCrushed;
     }
-    
+
     private void OnDisable()
     {
         Crushable.OnCrushed -= OnCrushed;
