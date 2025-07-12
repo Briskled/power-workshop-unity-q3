@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6975855818966304861}
   - component: {fileID: 7546758394071803379}
   - component: {fileID: 9057283001537955820}
+  - component: {fileID: 5067933554489849348}
   m_Layer: 0
   m_Name: Shroom
   m_TagString: Untagged
@@ -136,3 +137,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!114 &5067933554489849348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308374489857528182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e20338d442f40338f9d2a69db2b465e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
