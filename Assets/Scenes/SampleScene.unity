@@ -4466,6 +4466,33 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   bulletTimeDuration: 2
+  shakeCamera: 1
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeStrength: 6
+  shakeDuration: 1
 --- !u!114 &1600568667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5010,7 +5037,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.05
+      value: 0.1
       inSlope: -0.00000037967342
       outSlope: -0.00000037967342
       tangentMode: 0
@@ -5030,6 +5057,33 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   bulletTimeDuration: 2
+  shakeCamera: 1
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeStrength: 6
+  shakeDuration: 1
 --- !u!114 &1739830207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5335,7 +5389,7 @@ MonoBehaviour:
   NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
   AmplitudeGain: 0
-  FrequencyGain: 0.2
+  FrequencyGain: 0.15
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1894415875 stripped
 GameObject:

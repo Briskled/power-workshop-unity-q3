@@ -2,6 +2,8 @@
 
 using System.Linq;
 using Alchemy.Inspector;
+using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 
 #endregion
@@ -28,6 +30,17 @@ public class Explodable : MonoBehaviour
     [SerializeField] [ShowIf(nameof(showBulletTimeEffect))]
     private float bulletTimeDuration = 2;
 
+    [SerializeField] private bool shakeCamera = true;
+
+    [SerializeField] [ShowIf(nameof(shakeCamera))]
+    private AnimationCurve shakeCurve = AnimationCurve.Linear(0, 1, 1, 0);
+
+    [SerializeField] [ShowIf(nameof(shakeCamera))]
+    private float shakeStrength = 4;
+
+    [SerializeField] [ShowIf(nameof(shakeCamera))]
+    private float shakeDuration = 1.5f;
+
     public OnExplodedDelegate onExploded;
 
     private float explosionTime = float.MinValue;
@@ -50,6 +63,17 @@ public class Explodable : MonoBehaviour
         // instantiate explosion. It destroys itself when it is done
         if (showExplosionEffect)
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        if (shakeCamera)
+        {
+            var vCam = FindAnyObjectByType<CinemachineCamera>();
+            var noiseModule = vCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+            DOTween.To(() => noiseModule.AmplitudeGain,
+                    x => noiseModule.AmplitudeGain = x,
+                    shakeStrength,
+                    shakeDuration)
+                .SetEase(shakeCurve);
+        }
     }
 
     private void Update()
