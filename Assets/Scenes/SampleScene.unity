@@ -989,6 +989,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9027514048236820042, guid: c695f6c1df40a40b2a264509c89132df, type: 3}
   m_PrefabInstance: {fileID: 209577051}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &209577053 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9027514048236820043, guid: c695f6c1df40a40b2a264509c89132df, type: 3}
+  m_PrefabInstance: {fileID: 209577051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &215312689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3828,8 +3833,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: -0.012500763
+      value: 1.0002441
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3837,8 +3842,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.9666748
+      value: 0.9516449
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3848,7 +3853,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 1851151854}
   fieldOfViewRange: {x: 60, y: 69}
   fieldOfViewLerpCurve:
     serializedVersion: 2
@@ -3876,7 +3881,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   fieldOfViewEndLerpDuration: 0.7
   fieldOfViewEndLerpEase: 27
-  particleSystem: {fileID: 0}
+  particleSystem: {fileID: 209577053}
   emissionRange: {x: 0, y: 35}
   volume: {fileID: 832575520}
   chromaticAberration: {x: 0, y: 0}
